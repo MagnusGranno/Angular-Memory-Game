@@ -1,0 +1,10 @@
+<div class="text-sky-700 font-bold flex justify-evenly border-sky-700">
+  <button
+    [class.selected]="diff === selectedDiff"
+    (click)="onSelect(diff)"
+    class="border-b-2 border-x-[1px] border-sky-700 h-full w-full py-2 hover:bg-sky-700 hover:text-white"
+    *ngFor="let diff of difficulties"
+  >
+    {{ diff }}
+  </button>
+</div>

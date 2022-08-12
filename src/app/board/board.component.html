@@ -1,0 +1,10 @@
+<div
+  [ngClass]="difficulty"
+  class="bg-sky-700 w-96 h-96 border-[1px] border-black"
+>
+  <div
+    *ngFor="let box of board"
+    (click)="consolemyshit()"
+    class="border-[1px] border-black w-full h-full"
+  ></div>
+</div>
