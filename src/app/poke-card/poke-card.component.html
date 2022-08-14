@@ -1,0 +1,8 @@
+<div
+  class="card w-full h-full font-bold py-2 flex flex-col justify-center items-center shadow-lg rounded-lg"
+  [ngStyle]="{ 'background-color': myColor }"
+>
+  <h2 class="p-2">{{ pokemon.name | uppercase }}</h2>
+  <img [src]="pokemon.sprites.back_default" alt="" />
+  <div class="front"></div>
+</div>

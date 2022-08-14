@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GamemasterService } from '../gamemaster.service';
+import { PokeService } from '../poke.service';
+import { Pokemon } from '../pokemon';
 
 @Component({
   selector: 'app-board',
@@ -7,15 +8,25 @@ import { GamemasterService } from '../gamemaster.service';
   styleUrls: ['./board.component.css'],
 })
 export class BoardComponent implements OnInit {
-  difficulty: string = 'easy';
-  board = this.gameMaster.board;
-  constructor(private gameMaster: GamemasterService) {}
+  pokemonsOne: any[] = [];
+  pokemonsTwo: any[] = [];
+  pokemons: any[] = [];
+  constructor(private poke: PokeService) {}
 
   ngOnInit(): void {
-    this.difficulty = this.gameMaster.getDifficulty();
+    this.getPokemons();
   }
 
-  consolemyshit(): void {
-    console.log(this.difficulty);
+  getPokemons(): void {
+    this.poke.getPokemons().subscribe((response: any) => {
+      response.results.forEach((result: any) => {
+        this.poke.getPokemon(result.name).subscribe((uniqResponse: any) => {
+          this.pokemonsOne.push(uniqResponse);
+          this.pokemonsTwo.push(uniqResponse);
+          this.pokemons = [...this.pokemonsOne, ...this.pokemonsTwo];
+          this.pokemons.sort((_) => Math.random() - 0.5);
+        });
+      });
+    });
   }
 }
