@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ResolveStart } from '@angular/router';
 import { PokeService } from '../poke.service';
 import { Pokemon } from '../pokemon';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,13 +10,10 @@ import { RestartDialogComponent } from '../restart-dialog/restart-dialog.compone
   styleUrls: ['./board.component.css'],
 })
 export class BoardComponent implements OnInit {
-  // pokemonsOne: Pokemon[] = [];
-  // pokemonsTwo: Pokemon[] = [];
   pokemons: Pokemon[] = [];
   matchedCount: number = 0;
   flippedCards: Pokemon[] = [];
 
-  // @Input clickCard:
   constructor(private poke: PokeService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
@@ -105,6 +101,7 @@ export class BoardComponent implements OnInit {
 
   restart(): void {
     this.matchedCount = 0;
+    this.getPokemons();
     this.getPokemons();
   }
 }
