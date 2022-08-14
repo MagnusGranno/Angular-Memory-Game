@@ -1,14 +1,50 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from '@angular/animations';
 import { identity } from 'rxjs';
 import { Colors } from '../colors';
+import { Pokemon } from '../pokemon';
 
 @Component({
   selector: 'app-poke-card',
   templateUrl: './poke-card.component.html',
   styleUrls: ['./poke-card.component.css'],
+  animations: [
+    trigger('cardFlip', [
+      state(
+        'default',
+        style({
+          transform: 'none',
+        })
+      ),
+      state(
+        'flipped',
+        style({
+          transform: 'perspective(600px) rotateY(180deg)',
+        })
+      ),
+      state(
+        'matched',
+        style({
+          visibility: 'false',
+          transform: 'scale(0.05)',
+          opacity: 0,
+        })
+      ),
+      transition('default => flipped', [animate('400ms')]),
+      transition('flipped => default', [animate('400ms')]),
+      transition('* => matched', [animate('400ms')]),
+    ]),
+  ],
 })
 export class PokeCardComponent implements OnInit {
-  @Input() pokemon!: any;
+  @Input() pokemon!: Pokemon;
+  @Output() cardClicked = new EventEmitter();
 
   myColor: string = 'white';
 
@@ -37,6 +73,6 @@ export class PokeCardComponent implements OnInit {
   }
 
   getType(): string {
-    return this.pokemon.types[0].type.name;
+    return this.pokemon.type;
   }
 }

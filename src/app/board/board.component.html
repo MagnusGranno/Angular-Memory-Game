@@ -1,9 +1,8 @@
-<div class="container w-full h-full mx-auto grid grid-cols-6 gap-3">
-  <!-- <div *ngFor="let pokemon of pokemons">
-    {{ pokemon }}
-  </div> -->
-  <app-poke-card *ngFor="let pokemon of pokemons" [pokemon]="pokemon">
+<div class="container mx-auto grid">
+  <app-poke-card
+    *ngFor="let pokemon of pokemons; let idx = index"
+    [pokemon]="pokemon"
+    (cardClicked)="cardClicked(idx)"
+  >
   </app-poke-card>
-  <!-- <app-poke-card *ngFor="let pokemonTwo of pokemonsTwo" [pokemon]="pokemonTwo">
-  </app-poke-card> -->
 </div>

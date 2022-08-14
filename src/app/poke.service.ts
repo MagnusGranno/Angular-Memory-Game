@@ -11,7 +11,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class PokeService {
-  pokeAPIUrl: string = 'https://pokeapi.co/api/v2/pokemon?limit=18';
+  pokeAPIUrl: string = 'https://pokeapi.co/api/v2/pokemon?limit=8';
 
   getPokemons() {
     return this.http.get(this.pokeAPIUrl);

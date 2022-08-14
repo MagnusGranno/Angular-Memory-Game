@@ -1,8 +1,12 @@
-<div
-  class="card w-full h-full font-bold py-2 flex flex-col justify-center items-center shadow-lg rounded-lg"
-  [ngStyle]="{ 'background-color': myColor }"
->
-  <h2 class="p-2">{{ pokemon.name | uppercase }}</h2>
-  <img [src]="pokemon.sprites.back_default" alt="" />
-  <div class="front"></div>
+<div class="card" (click)="cardClicked.emit()" [@cardFlip]="pokemon.state">
+  <div class="back">
+    <img class="mImg" src="../../assets/pokeball.png" alt="Pokeball" />
+  </div>
+  <div
+    class="front flex flex-col items-center justify-between"
+    [ngStyle]="{ 'background-color': myColor }"
+  >
+    <h2 class="pt-5 text-xl">{{ pokemon.name | uppercase }}</h2>
+    <img class="h-full" [src]="pokemon.url" alt="pokemon.name" />
+  </div>
 </div>
