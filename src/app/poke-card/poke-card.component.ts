@@ -6,7 +6,6 @@ import {
   transition,
   animate,
 } from '@angular/animations';
-import { identity } from 'rxjs';
 import { Colors } from '../colors';
 import { Pokemon } from '../pokemon';
 
@@ -31,7 +30,6 @@ import { Pokemon } from '../pokemon';
       state(
         'matched',
         style({
-          /*           visibility: 'false', */
           transform: 'scale(0.05)',
           opacity: 0,
         })

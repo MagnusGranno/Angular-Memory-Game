@@ -1,0 +1,7 @@
+.myHover:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 1) 0%,
+    rgba(236, 72, 153, 1) 0%
+  );
+}

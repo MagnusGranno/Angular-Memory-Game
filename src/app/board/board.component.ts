@@ -4,7 +4,7 @@ import { Pokemon } from '../pokemon';
 import { MatDialog } from '@angular/material/dialog';
 import { RestartDialogComponent } from '../restart-dialog/restart-dialog.component';
 
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-board',
