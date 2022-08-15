@@ -1,10 +1,8 @@
 .active {
-  --tw-bg-opacity: 1;
-  background-color: rgb(3 105 161 / var(--tw-bg-opacity));
-  color: #fff;
-}
-#active {
-  --tw-bg-opacity: 1;
-  background-color: rgb(3 105 161 / var(--tw-bg-opacity));
-  color: #fff;
+  background: rgb(99, 102, 241);
+  background: linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 1) 0%,
+    rgba(236, 72, 153, 1) 0%
+  );
 }
