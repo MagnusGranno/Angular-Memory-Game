@@ -31,7 +31,7 @@ import { Pokemon } from '../pokemon';
       state(
         'matched',
         style({
-          visibility: 'false',
+          /*           visibility: 'false', */
           transform: 'scale(0.05)',
           opacity: 0,
         })

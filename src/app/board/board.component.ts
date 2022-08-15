@@ -15,7 +15,7 @@ export class BoardComponent implements OnInit {
   pokemons: Pokemon[] = [];
   matchedCount: number = 0;
   flippedCards: Pokemon[] = [];
-  difficulty: string = 'Easy';
+  difficulty: string = '';
   columns: number = 4;
 
   constructor(
@@ -26,13 +26,11 @@ export class BoardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.router.url);
     this.difficulty = this.router.url;
     this.setDifficulty(this.difficulty);
   }
 
   setDifficulty(diff: string): void {
-    console.log(diff);
     switch (diff) {
       case '/Easy':
         this.columns = 4;

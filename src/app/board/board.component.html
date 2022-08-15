@@ -1,4 +1,11 @@
-<div class="container mx-auto grid gap-4 grid-cols-[{{ columns }}]">
+<div
+  [ngClass]="{
+    Easy: difficulty === '/Easy',
+    Medium: difficulty === '/Medium',
+    Hard: difficulty === '/Hard'
+  }"
+  class="container mx-auto grid gap-4 grid-cols-4"
+>
   <app-poke-card
     *ngFor="let pokemon of pokemons; let idx = index"
     [pokemon]="pokemon"

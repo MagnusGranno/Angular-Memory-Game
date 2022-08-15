@@ -1,10 +1,21 @@
-/* .grid {
+.grid {
   display: grid;
-  grid-template-columns: repeat(4, 160px);
   gap: 16px;
 
   justify-content: center;
-} */
+}
+
+.Easy {
+  grid-template-columns: repeat(4, 160px);
+}
+
+.Medium {
+  grid-template-columns: repeat(6, 160px);
+}
+
+.Hard {
+  grid-template-columns: repeat(8, 160px);
+}
 
 @media (max-width: 600px) {
   .grid {
