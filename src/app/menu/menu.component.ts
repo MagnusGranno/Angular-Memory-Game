@@ -8,18 +8,7 @@ import { PokeService } from '../poke.service';
 })
 export class MenuComponent implements OnInit {
   difficulties = ['Easy', 'Medium', 'Hard'];
-  constructor(
-    private gameMaster: GamemasterService,
-    private poke: PokeService
-  ) {}
-
-  selectedDiff = 'Easy';
-  onSelect(difficulty: string) {
-    this.selectedDiff = difficulty;
-    this.gameMaster.setDifficulty(difficulty);
-    // this.poke.loadPokemon();
-    // console.log(this.poke.pokeMons);
-  }
+  constructor(private poke: PokeService) {}
 
   ngOnInit(): void {}
 }

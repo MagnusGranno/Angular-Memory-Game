@@ -1,14 +1,13 @@
-
-.grid {
+/* .grid {
   display: grid;
   grid-template-columns: repeat(4, 160px);
   gap: 16px;
 
   justify-content: center;
-}
+} */
 
 @media (max-width: 600px) {
   .grid {
-      grid-template-columns: repeat(2, 150px);
+    grid-template-columns: repeat(2, 150px);
   }
 }

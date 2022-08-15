@@ -4,6 +4,8 @@ import { Pokemon } from '../pokemon';
 import { MatDialog } from '@angular/material/dialog';
 import { RestartDialogComponent } from '../restart-dialog/restart-dialog.component';
 
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -13,19 +15,45 @@ export class BoardComponent implements OnInit {
   pokemons: Pokemon[] = [];
   matchedCount: number = 0;
   flippedCards: Pokemon[] = [];
+  difficulty: string = 'Easy';
+  columns: number = 4;
 
-  constructor(private poke: PokeService, private dialog: MatDialog) {}
+  constructor(
+    private poke: PokeService,
+    private dialog: MatDialog,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.getPokemons();
-    this.getPokemons();
-    // setTimeout(() => {
-    //   this.pokemons = this.pokemons.sort(() => Math.random() - 0.5);
-    // }, 500);
+    console.log(this.router.url);
+    this.difficulty = this.router.url;
+    this.setDifficulty(this.difficulty);
   }
 
-  getPokemons(): void {
-    this.poke.getPokemons().subscribe((response: any) => {
+  setDifficulty(diff: string): void {
+    console.log(diff);
+    switch (diff) {
+      case '/Easy':
+        this.columns = 4;
+        this.getPokemons(8);
+        this.getPokemons(8);
+
+        break;
+      case '/Medium':
+        this.columns = 6;
+        this.getPokemons(12);
+        this.getPokemons(12);
+        break;
+      case '/Hard':
+        this.columns = 8;
+        this.getPokemons(16);
+        this.getPokemons(16);
+        break;
+    }
+  }
+  getPokemons(num: number): void {
+    this.poke.getPokemons(num).subscribe((response: any) => {
       response.results.forEach((result: any) => {
         this.poke.getPokemon(result.name).subscribe((uniqResponse: any) => {
           const pokemon: Pokemon = {
@@ -60,7 +88,6 @@ export class BoardComponent implements OnInit {
 
   cardClicked(index: number): void {
     const cardInfo = this.pokemons[index];
-    console.log(cardInfo);
 
     if (cardInfo.state === 'default' && this.flippedCards.length < 2) {
       cardInfo.state = 'flipped';
@@ -74,6 +101,8 @@ export class BoardComponent implements OnInit {
       this.flippedCards.pop();
     }
   }
+
+  isFinished: boolean = false;
   checkForCardMatch(): void {
     setTimeout(() => {
       const cardOne = this.flippedCards[0];
@@ -86,7 +115,9 @@ export class BoardComponent implements OnInit {
       if (nextState === 'matched') {
         this.matchedCount++;
 
-        if (this.matchedCount === this.pokemons.length) {
+        if (this.matchedCount === this.pokemons.length / 2) {
+          this.isFinished = true;
+
           const dialogRef = this.dialog.open(RestartDialogComponent, {
             disableClose: true,
           });
@@ -101,7 +132,7 @@ export class BoardComponent implements OnInit {
 
   restart(): void {
     this.matchedCount = 0;
-    this.getPokemons();
-    this.getPokemons();
+    this.pokemons = [];
+    this.setDifficulty(this.difficulty);
   }
 }

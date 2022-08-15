@@ -1,4 +1,9 @@
-.selected {
+.active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(3 105 161 / var(--tw-bg-opacity));
+  color: #fff;
+}
+#active {
   --tw-bg-opacity: 1;
   background-color: rgb(3 105 161 / var(--tw-bg-opacity));
   color: #fff;
