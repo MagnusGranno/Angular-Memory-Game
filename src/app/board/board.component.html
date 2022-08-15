@@ -1,4 +1,5 @@
 <div
+  *ngIf="!shuffling"
   [ngClass]="{
     Easy: difficulty === '/Easy',
     Medium: difficulty === '/Medium',
