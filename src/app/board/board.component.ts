@@ -36,19 +36,42 @@ export class BoardComponent implements OnInit {
         this.columns = 4;
         this.getPokemons(8);
         this.getPokemons(8);
+        [...this.pokemons, ...this.shuffle(this.pokemons)];
 
         break;
       case '/Medium':
         this.columns = 6;
         this.getPokemons(12);
         this.getPokemons(12);
+        [...this.pokemons, ...this.shuffle(this.pokemons)];
         break;
       case '/Hard':
         this.columns = 8;
         this.getPokemons(16);
         this.getPokemons(16);
+        [...this.pokemons, ...this.shuffle(this.pokemons)];
         break;
     }
+  }
+
+  shuffle<Pokemon>(array: Pokemon[]): Pokemon[] {
+    let currentIndex = array.length,
+      randomIndex;
+
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+
+    return array;
   }
   getPokemons(num: number): void {
     this.poke.getPokemons(num).subscribe((response: any) => {
@@ -65,7 +88,8 @@ export class BoardComponent implements OnInit {
       });
     });
 
-    // this.pokemons = this.shuffte(this.pokemons);
+    this.pokemons = this.shuffle(this.pokemons);
+    [...this.pokemons, ...this.shuffle(this.pokemons)];
   }
 
   // shuffte(array: Pokemon[]): Pokemon[] {
